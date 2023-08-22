@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movie Theater</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+
+    .body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+
+    .fw-900 {
+      font-weight: 900;
+    }
+
+    .fw-700 {
+      font-weight: 700;
+    }
+
+    .fw-500 {
+      font-weight: 500;
+    }
+
+    .fw-300 {
+      font-weight: 300;
+    }
+
+    .bg-cover {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    /* 圖片必備
+    background-position: center center; 
+    background-repeat: no-repeat; 
+    background-size: cover */
+    .carousel-caption {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 2px 2px 8px 1.5px #a5a5a5;
+    }
+
+    .s09_text {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 15px;
+      border-radius: 15px;
+    }
+
+    .timeline-section {
+      position: relative;
+    }
+
+    .timeline-section::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      /* 漸層色 */
+      /* background-image: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,9)); */
+      background-color: #3a3a3a;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .timeline-section-pointer {
+      position: relative;
+    }
+
+    .timeline-section-pointer::before {
+      position: absolute;
+      content: "";
+      top: 50%;
+      height: 20px;
+      width: 20px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      border: 5px solid #ccc;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .timeline-section-pointer:hover::before {
+      height: 30px;
+      width: 30px;
+      border: 10px solid rgb(255, 174, 0);
+    }
+
+    @media screen and (max-width: 768px) {
+
+      .timeline-section::before,
+      .timeline-section-pointer::before {
+        display: none;
+      }
+    }
+
+
+    @media screen and (max-width:768px) {
+
+      .s05_text,
+      .s07_text {
+        z-index: 10;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 15px;
+        border-radius: 15px;
+      }
+
+      .s05_img {
+        right: 0;
+        bottom: 0;
+        top: 0;
+      }
+
+      .s05_button {
+        color: white;
+        border-color: white;
+      }
+
+      .s07_img {
+        left: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- s01 FB IG Twitter-->
+  <section class="bg-secondary">
+    <div class="container">
+      <div class="text-end">
+        <a href="#">
+          <i class="fa-brands fa-square-facebook text-white me-1"></i></a>
+        <a href="#">
+          <i class="fa-brands fa-instagram text-white me-1"></i></a>
+        <a href="#">
+          <i class="fa-brands fa-twitter text-white"></i></a>
+      </div>
+  </section>
+
+  <!-- S02 選單 -->
+  <section class="bg-dark">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <i class="fa-solid fa-video text-white"></i>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">首頁</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">影城介紹</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">電影資訊</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">餐飲與商品</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  活動公告
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">影城公告</a></li>
+                  <li><a class="dropdown-item" href="#">影城活動</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">中獎名單</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <a href="#" class="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#loginModal">登入</a>
+              <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registerModal">註冊</a>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header text-bg-warning">
+          <h1 class="modal-title fs-3 text-bg-warning" id="exampleModalLabel">會員登入</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="" class="form-label">帳號</label>
+            <input type="text" class="form-control">
+            <!-- 
+              form-label: 會有間隔
+              form-control: 框框會變比較圓潤好看
+            -->
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">密碼</label>
+            <input type="password" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" type="button"
+            class="me-auto">尚未有帳號，請點我!</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">確認</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header text-bg-success">
+          <h1 class="modal-title fs-3 text-bg-success" id="exampleModalLabel">註冊帳號</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <h5>iShow會員相關權益</h5>
+              <h6>1.申請資格：需持有本國身分證或居留證者方可申請，且一人僅可申請一個帳號。</h6>
+              <h6>2.票價及餐飲折扣、販賣部特殊商品、NT Live、特殊映演搶先購及兌點規則請依各影城公告為主。</h6>
+              <h6>3.官網與APP訂票：需另支付手續費。</h6>
+              <h6>▲ 請注意：</h6>
+              <h6>1.若您於申請會員時出現『此身份證號碼已存在』或『此信箱已加入過會員』的訊息而無法註冊，請洽各影城服務專線為您查詢處理。</h6>
+              <h6>2.若您已是網路會員身份，請立即無痛開通iShow會員 > 線上開通未有儲值功能之會員，請立即線上更換具儲值功能卡號 > 卡片線上換新</h6>
+
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input">
+                <label for="" class="form-check-label">遵守上述所敘</label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="" class="form-label">帳號</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">密碼</label>
+                <input type="password" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">密碼確認</label>
+                <input type="password" class="form-control">
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">E-mail</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" type="button" class="me-auto">已有帳號，請點我!</a>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">確認</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S03 輪播效果 Carousel -->
+  <section>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+          aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+          aria-label="Slide 5"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active bg-cover " style="background-image: url(images/01.jpg.jpg);
+        height: 420px; ">
+          <div class="carousel-caption d-none d-md-block ">
+            <h3 class="fw-900">THE QUEEN</h3>
+            <p>Some representative placeholder content for the first slide.</p>
+          </div>
+        </div>
+        <div class="carousel-item bg-cover" style="background-image: url(images/02.jpg.jpg);
+        height: 420px; ">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 class="fw-900">People of Interest</h3>
+            <p>The past can hurt. But the way I see it, you can either run from it, or learn from it.</p>
+          </div>
+        </div>
+        <div class="carousel-item bg-cover" style="background-image: url(images/03.jpg.jpg);
+        height: 420px; ">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 class="fw-900">Catch-22 (1970)</h3>
+            <p>If you focus on what you left behind, you will never see what lies ahead.</p>
+          </div>
+        </div>
+        <div class="carousel-item bg-cover" style="background-image: url(images/04.jpg.jpg);
+        height: 420px; ">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 class="fw-900">Everything Everywhere All at Once</h3>
+            <p>The flower that blooms in adversity is the most rare and beautiful of all.</p>
+          </div>
+        </div>
+        <div class="carousel-item bg-cover" style="background-image: url(images/05.jpg.jpg);
+        height: 420px; ">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 class="fw-900">THE HUNGER GAMES</h3>
+            <p>Venture outside your comfort zone. The rewards are worth it.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- S12 數字 -->
+  <section style="position: relative;">
+    <div class="row">
+      <div class="col-md-5 bg-cover s05_img" style="position: absolute;
+      top: 0;
+      bottom: 0;
+      background-image: url(images/07.jpg.jpg);">
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-md-7 s05_text">
+          <h2 class="my-3 fw-700 pt-2">MU / 幕、慕
+            <span style="color:orange;">揭開序幕</span>
+            <br>慕名而來，全台影城領導品牌
+          </h2>
+          <p class="fw-300">共計8個影廳，6個一般廳、一個TITAN巨幕影廳及一個MUCROWN｜LEXUS頂級影廳，共計1,147個座位(含輪椅席)。
+            最大特色為全影廳都接受由《星際大戰》導演喬治盧卡斯，所推出的美國知名THX認證。此認證系統，證明影廳畫面對比度、色彩，聲音響度、音場頻率全達到最高規格。
+          </p>
+          <div class="row my-3">
+            <section style="position: relative;">
+              <div class="container py-5">
+                <div class="row">
+                  <div class="col-4 text-center">
+                    <h4 class="fw-500">本月造訪</h4>
+                    <h2 class="fw-700 counter01">1250 /萬人</h2>
+                  </div>
+                  <div class="col-4 text-center">
+                    <h4 class="fw-500">獲獎數目</h4>
+                    <h2 class="fw-700 counter02">44 /座</h2>
+                  </div>
+                  <div class="col-4 text-center">
+                    <h4 class="fw-500">公司據點</h4>
+                    <h2 class="fw-700 counter03">25 /個</h2>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- S11 歷史記錄 -->
+  <section style="position: relative;">
+    <div class="row">
+      <div class="bg-cover s05_img" style="position: absolute;
+      top: 0;
+      bottom: 0;
+      background-image: url(images/15.jpg);">
+      </div>
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <div class="mytext s09_text">
+            <h2 class="fw-900">111111</h2>
+            <p class="fw-700">
+              其前身為1998年至2004年在臺灣經營的華納威秀影城，由美國華納兄弟影業與澳洲威秀有限公司合資成立。後來因華納及威秀共同撤資，改由香港橙天嘉禾
+            </p>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="timeline-section s05_text" style="color: white;">
+            <div class="row align-items-center timeline-section-pointer">
+              <div class="col-md-6 text-center">
+                <div class="mytext s09_text">
+                  <h2 class="fw-900">電影院歷史介紹01</h2>
+                  <p class="fw-700">
+                    其前身為1998年至2004年在臺灣經營的華納威秀影城，由美國華納兄弟影業與澳洲威秀有限公司合資成立。後來因華納及威秀共同撤資，改由香港橙天嘉禾、臺灣中環等四家台港企業共同接手經營、並改為現名，雖然維持「威秀」的中文名稱，但與威秀娛樂集團已無股權關係。
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6 text-center">
+                <div class="myimg bg-cover" style="background-image: url(images/16.jpg); height: 280px;"></div>
+              </div>
+            </div>
+            <div class="row align-items-center flex-row-reverse timeline-section-pointer">
+              <div class="col-md-6">
+                <div class="mytext text-center s09_text">
+                  <h2 class="fw-900">電影院歷史介紹02</h2>
+                  <p class="fw-700">
+                    股權情形銀行接收話題親自承認一次精采世界盃關鍵重量，逐漸這個需求技術有着設立狀態獨立，形成刺激，為。股權情形銀行接收話題親自承認一次精采世界盃關鍵重量，逐漸這個需求技術有着設立狀態獨立，形成刺激，為
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6 text-center">
+                <div class="myimg bg-cover" style="background-image: url(images/08.jpg.jpg); height: 280px;"></div>
+              </div>
+            </div>
+            <div class="row align-items-center timeline-section-pointer">
+              <div class="col-md-6">
+                <div class="mytext text-center s09_text">
+                  <h2 class="fw-900">電影院歷史介紹03</h2>
+                  <p class="fw-700">
+                    股權情形銀行接收話題親自承認一次精采世界盃關鍵重量，逐漸這個需求技術有着設立狀態獨立，形成刺激，為。股權情形銀行接收話題親自承認一次精采世界盃關鍵重量，逐漸這個需求技術有着設立狀態獨立，形成刺激，為
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6 text-center">
+                <div class="myimg bg-cover" style="background-image: url(images/10.jpg); height: 280px;"></div>
+              </div>
+            </div>
+            <div class="row align-items-center flex-row-reverse timeline-section-pointer">
+              <div class="col-md-6">
+                <div class="mytext text-center s09_text">
+                  <h2 class="fw-900">電影院歷史介紹04</h2>
+                  <p class="fw-700">
+                    股權情形銀行接收話題親自承認一次精采世界盃關鍵重量，逐漸這個需求技術有着設立狀態獨立，形成刺激，為。股權情形銀行接收話題親自承認一次精采世界盃關鍵重量，逐漸這個需求技術有着設立狀態獨立，形成刺激，為
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6 text-center">
+                <div class="myimg bg-cover" style="background-image: url(images/13.jpg); height: 280px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- S04 三大服務項目 -->
+  <section class="bg-dark">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 text-center p-4">
+          <i class="fa-solid fa-glasses fa-5x text-white"></i>
+          <div class="d-none d-md-block">
+            <!-- d-nond d-md-block 調整手機板顯示與不顯示 -->
+            <h2 class="my-3 fw-700 text-white">3D電影</h2>
+            <p class="fw-300 text-white">技術上，通常採用兩台攝影機擺設，同步拍攝影像，取得主體左右側體的立體感。觀看時，觀眾的視覺皮層會自動對圖像結合為單一三維影像畫面。</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center p-4">
+          <i class="fa-solid fa-headphones fa-5x text-white"></i>
+          <div class="d-none d-md-block">
+            <h2 class="my-3 fw-700 text-white">包廂預約</h2>
+            <p class="fw-300 text-white">
+              從精品級的休憩大廳與餐廳空間，飯店私廚的豪華餐點，到頭等艙包廂式的影廳座位，包含影廳座椅與私廚料理食材都是MIT製造品質保證，奢華程度絕對超越大家對電影院的想像！
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 text-center p-4 ">
+          <i class="fa-solid fa-gifts fa-5x text-white"></i>
+          <div class="d-none d-md-block">
+            <h2 class="my-3 fw-700 text-white">周邊商品</h2>
+            <p class="fw-300 text-white">絕無僅有的商品只會出現在我們這邊啦~從爆米花的桶子、飲料杯到衣服、T-SHIRT、玩偶等精美商品，你想的到的通通都有!等你來帶回家喔~</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- S05 影城介紹 -->
+  <section style="position: relative;">
+    <div class="row">
+      <div class="col-md-5 bg-cover s05_img" style="position: absolute;
+      top: 0;
+      bottom: 0;
+      background-image: url(images/06.jpg.jpg);">
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-md-7 s05_text">
+          <h2 class="my-3 fw-700">影城介紹</h2>
+          <p class="fw-300">為滿足觀眾視聽至高無上的享受，台灣的電影院史上樹立新的里程碑。出自名室內設計師之手的17間影廳院，皆具備超大型廣角弧形銀幕及球場座位排列的座椅，提供台灣民眾世界級的影音享受。
+          </p>
+          <a href="#" class="btn btn-outline-dark s05_button">了解更多</a>
+          <div class="row my-3">
+            <div class="col-md-6">
+              <h3 class="fw-700">※本影城亦設有無障礙空間。</h3>
+              <p>●輪椅席(共40個席次)：第1、3-11、14廳-各3席，第2、15-18廳-各2席
+                <br>●無障礙電梯：一樓服務台旁
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <h3 class="fw-700">4DX介紹</h3>
+              <p>世界上最棒的影廳之一的4DX影廳，威秀影城2013年獨家引進，打造『台北信義威秀影城』全台首座4DX影廳，帶給您世界級的最新影音感官全體驗效果。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- s06 映演品牌-->
+  <section>
+    <div class="container">
+      <div class="display-3 text-center fw-900 mt-3">映演品牌</div>
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-music fa-6x me-3 text-danger"></i>
+            <div>
+              <h2>TITAN</h2>
+              <p>影廳播放之畫面色彩、對比度、聲音響度及音場頻率皆達最高規格。以最頂級的設備，打造全新開創性影音概念及聲光饗宴。
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-utensils fa-6x me-3 text-danger"></i>
+            <div>
+              <h2>MUCROWN</h2>
+              <p>「頭等艙座位、飯店級私廚餐點」豪華尺度超越想像～超私密頂級影城亮點搶先直擊。
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-vr-cardboard fa-5x me-3 text-danger"></i>
+            <div>
+              <h2>4DX</h2>
+              <p>4DX影廳是目前全球影院中最新穎的觀影體驗，包括震動搖晃與左右橫移，甚至是香氣水霧與閃光聲效和風效，更是徹底融入電影，讓你成為電影的主角。
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-compact-disc fa-6x me-3 text-danger"></i>
+            <div>
+              <h2>MAPPA</h2>
+              <p>取自義大利文地圖之義的Mappa影廳，是威秀影城全新打造的複合式影廳。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- s07 熱門電影推薦+圖片靠右-->
+  <section class="my-4" style="position: relative;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 s07_text">
+          <dl class="row">
+            <h2>熱門電影推薦</h2>
+            <p></p>
+            <dt class="col-sm-3">藍甲蟲 BLUE BEETLE</dt>
+            <dd class="col-sm-9">海梅雷耶斯剛從大學畢業回到家鄉，對未來滿懷抱負，但卻發現他的家已經跟以前不一樣了。</dd>
+
+            <dt class="col-sm-3">巨齒鯊2：海溝深淵</dt>
+            <dd class="col-sm-9">
+              <p>今年夏天，準備好感受腎上腺素激升的終極快感！</p>
+              <p>不僅動作戲更上一層樓，甚至深入更深的海域，有更多龐大的巨齒鯊、更多意想不到的驚險！</p>
+            </dd>
+
+            <dt class="col-sm-3">奧本海默</dt>
+            <dd class="col-sm-9">克里斯多夫諾蘭自編自導的《奧本海默》是一部用IMAX攝影機拍攝的史詩驚悚片，觀眾將看到一個謎一般的男人是如何陷入一個自相矛盾的困境，他為了拯救這個世界，必須先毀滅它。
+            </dd>
+
+            <dt class="col-sm-3 text-truncate">BARBIE芭比</dt>
+            <dd class="col-sm-9">身處一個完美地方過著完美的人生，除非你遇到全面性的存在危機，或者你剛好是肯尼。</dd>
+
+            <dt class="col-sm-3 text-truncate">逃出寧靜海</dt>
+            <dd class="col-sm-9">導演仍是由曾經執導2015年《不可能的任務：失控國度》和2018年《不可能的任務：全面瓦解》的克里斯多夫麥奎瑞擔任</dd>
+
+          </dl>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-md-5 bg-cover s07_img" style="
+        position: absolute;
+        background-image: url(images/02.jpg.jpg);
+        top: 0;
+        bottom: 0;"></div>
+    </div>
+  </section>
+
+  <!-- s08 地圖 詢問表單-->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14560.80864087747!2d120.62556378715824!3d24.164641899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693df664cfacab%3A0x769c4f986bf51008!2z6Ie65Lit5aSn6YGg55m-5aiB56eA5b2x5Z-O!5e0!3m2!1szh-TW!2stw!4v1692235644105!5m2!1szh-TW!2stw"
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="" class="form-label">姓名</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">電話</label>
+            <input type="phone" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">E-mail</label>
+            <input type="email" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">人數</label>
+            <input type="number" class="form-control" min="1" max="20">
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              需要套餐
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              不需要套餐
+            </label>
+          </div>
+          <div class="text-end my-3">
+            <a href="#" class="btn btn-secondary">取消</a>
+            <a href="#" class="btn btn-primary">確認</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- s09 職缺徵人-->
+  <section>
+    <div class="row">
+      <div class="col-md-6 bg-cover" style="background-image: url(/images/09.jpg.jpg);">
+        <div class="row">
+          <div class="col-md-9 s09_text m-4 p-3">
+            <small class="badge text-bg-danger m-3">加入我們</small>
+            <h2 class="fw-700">展場主持人數名</h2>
+            <p class="fw-700">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ad doloremque debitis autem, eos numquam
+              omnis excepturi temporibus a aspernatur consectetur voluptate vel asperiores vitae incidunt expedita
+              deserunt quibusdam cum.
+            </p>
+            <a href="#" class="btn btn-outline-danger">加入我們</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 bg-cover" style="background-image: url(/images/07_2.jpg);">
+        <div class="row">
+          <div class="col-md-9 s09_text m-4 p-3">
+            <small class="badge text-bg-danger m-3">加入我們</small>
+            <h2 class="fw-700">展場主持人數名</h2>
+            <p class="fw-700">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ad doloremque debitis autem, eos numquam
+              omnis excepturi temporibus a aspernatur consectetur voluptate vel asperiores vitae incidunt expedita
+              deserunt quibusdam cum.
+            </p>
+            <a href="#" class="btn btn-outline-danger">加入我們</a>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- s10 版權宣告 & 友善連結-->
+  <section>
+    <div class="container">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link disabled">Power By 全端班製作 202308</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">友站01</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">友站02</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">友站03</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+
+  <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+
+  <script>
+    const counterUp = window.counterUp.default
+
+    const callback = entries => {
+      entries.forEach(entry => {
+        const el = entry.target
+        if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+          counterUp(el, {
+            duration: 1000,
+            delay: 16,
+          })
+          el.classList.add('is-visible')
+        }
+      })
+    }
+
+    const IO = new IntersectionObserver(callback, { threshold: 1 })
+
+    const el01 = document.querySelector('.counter01')
+    IO.observe(el01)
+
+    const el02 = document.querySelector('.counter02')
+    IO.observe(el02)
+
+    const el03 = document.querySelector('.counter03')
+    IO.observe(el03)
+
+        // 如果要跑兩個以上程式就要額外設置counter，並分開標註，不然他只會跑一次counter
+  </script>
+</body>
+
+</html>
